@@ -18,6 +18,9 @@ ThemeData get theme {
           minimumSize: const Size(double.infinity, 40),
         ),
       ),
+      sliderTheme: const SliderThemeData(
+        showValueIndicator: ShowValueIndicator.always,
+      ),
     );
   } else {
     return FlexThemeData.light(
@@ -32,6 +35,10 @@ ThemeData get theme {
         style: ElevatedButton.styleFrom(
           minimumSize: const Size(double.infinity, 40),
         ),
+      ),
+      sliderTheme: const SliderThemeData(
+        showValueIndicator: ShowValueIndicator.always,
+        trackHeight: 1,
       ),
     );
   }

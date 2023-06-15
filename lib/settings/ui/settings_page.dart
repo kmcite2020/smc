@@ -27,7 +27,7 @@ class SettingsPage extends ReactiveStatelessWidget {
             onChanged: (value) {
               settingsBloc.isDark = value;
             },
-          ).pad,
+          ).pad(),
           DropdownButtonFormField(
             value: settingsBloc.flexScheme,
             items: FlexScheme.values.map(
@@ -41,7 +41,7 @@ class SettingsPage extends ReactiveStatelessWidget {
             onChanged: (value) {
               settingsBloc.flexScheme = value!;
             },
-          ).pad,
+          ).pad(),
           CupertinoSlider(
             value: settingsBloc.borderRadius,
             min: 0,
@@ -50,7 +50,7 @@ class SettingsPage extends ReactiveStatelessWidget {
             onChanged: (_) {
               settingsBloc.borderRadius = _;
             },
-          ).pad
+          ).pad()
         ],
       ),
     );

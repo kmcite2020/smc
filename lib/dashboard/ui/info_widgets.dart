@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:smc/core/extensions.dart';
-import 'package:smc/er/er_page.dart';
+import 'package:smc/er/presentation/patients/patients_page.dart';
 import 'package:smc/opd/opd_page.dart';
-import 'package:smc/patients/patients_bloc.dart';
 import 'package:states_rebuilder/states_rebuilder.dart';
 
 import '../../core/router.dart';
-import '../../patients/ui/patients_page.dart';
+import '../../er/presentation/bloc/patients_bloc.dart';
 
 class InfoWidgets extends ReactiveStatelessWidget {
   const InfoWidgets({super.key});
@@ -30,50 +29,52 @@ class InfoWidgets extends ReactiveStatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              'Total Patients'.textify().pad,
-              '${patientsBloc.patients.length}'.textify(2.4),
+              'Total Patients'.textify().pad(),
+              '${patientsBloc.patients.length}'.textify(textScaleFactor: 2.4),
               const Spacer(),
               ElevatedButton(
                 onPressed: () {
-                  router.toPageless(const PatientsPage());
+                  // router.toPageless(const PatientsPage());
                 },
                 child: 'Go to Patients'.textify(),
-              ).pad,
+              ).pad(),
             ],
           ),
-        ).pad,
+        ).pad(),
         Container(
           color: Colors.lightBlue.withOpacity(0.1),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              'OPD'.textify().pad,
-              '${patientsBloc.patients.length}'.textify(2.4),
+              'OPD'.textify().pad(),
+              '${patientsBloc.patients.length}'.textify(textScaleFactor: 2.4),
               const Spacer(),
               ElevatedButton(
                 onPressed: () {
                   router.toPageless(const OPDPage());
                 },
                 child: 'Go to Patients'.textify(),
-              ).pad,
+              ).pad(),
             ],
           ),
-        ).pad,
+        ).pad(),
         Container(
           color: Colors.lightBlue.withOpacity(0.1),
           child: Column(
             children: [
-              'Emergency Room'.textify().pad,
+              'Emergency Room'.textify().pad(),
               const Spacer(),
               ElevatedButton(
                 onPressed: () {
-                  router.toPageless(const ERPage());
+                  router.toPageless(
+                    const PatientsPage(),
+                  );
                 },
                 child: 'ER Utilities'.textify(),
-              ).pad,
+              ).pad(),
             ],
           ),
-        ).pad,
+        ).pad(),
       ],
     );
   }

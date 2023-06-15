@@ -1,6 +1,6 @@
 import 'package:uuid/uuid.dart';
 
-import '../patients/patients_bloc.dart';
+import '../er/presentation/bloc/patients_bloc.dart';
 import '../settings/settings_bloc.dart';
 
 const applicationName = 'SUBHAN MEDICAL CENTER';
