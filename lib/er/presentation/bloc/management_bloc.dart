@@ -1,3 +1,5 @@
+import 'package:smc/core/common.dart';
+import 'package:smc/er/domain/complaint.dart';
 import 'package:smc/er/domain/investigation.dart';
 import 'package:smc/er/domain/management.dart';
 import 'package:smc/er/presentation/bloc/patients_bloc.dart';
@@ -56,6 +58,7 @@ class ManagementBloc {
     );
   }
 
+  /// INVESTIGATIONS
   final investigationName = RM.injectTextEditing();
   final investigationValue = RM.injectTextEditing();
 
@@ -98,6 +101,61 @@ class ManagementBloc {
 
         final updatedPatientCopy = patientCopy.copyWith(
           investigations: {...patientCopy.investigations}..remove(investigation.time),
+        );
+        return patientsCopy.copyWith(
+          patients: {
+            ...patientsCopy.patients,
+            updatedPatientCopy.mr: updatedPatientCopy,
+          },
+        );
+      },
+    );
+  }
+
+  /// COMPLAINTS
+  final complaintName = RM.injectTextEditing();
+  final complaintHistory = RM.injectTextEditing();
+  final complaintDuration = RM.injectFormField<double>(0);
+  void addComplaint({
+    required MR patientID,
+  }) {
+    patientsBloc.patientsRM.setState(
+      (s) {
+        final psC = s.copyWith();
+        final pC = psC.patients[patientID]!;
+        final complaint = Complaint(
+          id: randomID,
+          complaint: complaintName.value,
+          history: complaintHistory.value,
+          durationInDays: complaintDuration.value,
+        );
+        final upC = pC.copyWith(
+          presentingComplaints: {
+            ...pC.presentingComplaints,
+            complaint.id: complaint,
+          },
+        );
+        return psC.copyWith(
+          patients: {
+            ...psC.patients,
+            upC.mr: upC,
+          },
+        );
+      },
+    );
+  }
+
+  void removeComplaint({
+    required Complaint investigation,
+    required MR patientID,
+  }) {
+    patientsBloc.patientsRM.setState(
+      (s) {
+        final patientsCopy = s.copyWith();
+        final patientCopy = patientsCopy.patients[patientID]!;
+
+        final updatedPatientCopy = patientCopy.copyWith(
+          investigations: {...patientCopy.investigations}..remove(investigation.id),
         );
         return patientsCopy.copyWith(
           patients: {

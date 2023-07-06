@@ -26,7 +26,7 @@ class Patient extends Equatable {
   final Address address;
   final Classification classification; //
   final Triage triage; //
-  final List<Complaint> presentingComplaints;
+  final Map<String, Complaint> presentingComplaints;
   final Map<DateTime, Vitals> vitals;
   final Examinations examinations;
   final Map<DateTime, Investigation> investigations; //
@@ -44,7 +44,7 @@ class Patient extends Equatable {
     this.address = const Address(),
     this.classification = Classification.medical,
     this.triage = Triage.green,
-    this.presentingComplaints = const [],
+    this.presentingComplaints = const {},
     this.vitals = const {},
     this.examinations = const Examinations(),
     this.investigations = const {},
@@ -64,7 +64,7 @@ class Patient extends Equatable {
     Address? address,
     Classification? classification,
     Triage? triage,
-    List<Complaint>? presentingComplaints,
+    Map<String, Complaint>? presentingComplaints,
     Map<DateTime, Vitals>? vitals,
     Examinations? examinations,
     Map<DateTime, Investigation>? investigations,

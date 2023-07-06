@@ -4,7 +4,6 @@ import 'package:smc/core/extensions.dart';
 import 'package:smc/core/router.dart';
 import 'package:smc/er/domain/complaint.dart';
 import 'package:smc/er/domain/patient.dart';
-import 'package:smc/er/presentation/duration_view.dart';
 
 class ComplaintsView extends StatelessWidget {
   const ComplaintsView({
@@ -18,7 +17,7 @@ class ComplaintsView extends StatelessWidget {
       children: [
         Column(
           mainAxisSize: MainAxisSize.min,
-          children: patient.presentingComplaints.map(
+          children: patient.presentingComplaints.values.map(
             (Complaint e) {
               return Row(
                 children: [
@@ -28,7 +27,8 @@ class ComplaintsView extends StatelessWidget {
                       e.history.textify().pad(),
                     ],
                   ),
-                  DurationView(duration: e.duration),
+                  e.durationInDays.toInt().textify()
+                  // DurationView(duration: e.duration),
                 ],
               );
             },
@@ -40,7 +40,7 @@ class ComplaintsView extends StatelessWidget {
               Dialog(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
-                  children: patient.presentingComplaints.map(
+                  children: patient.presentingComplaints.values.map(
                     (Complaint e) {
                       return Row(
                         children: [
@@ -50,7 +50,8 @@ class ComplaintsView extends StatelessWidget {
                               e.history.textify().pad(),
                             ],
                           ),
-                          DurationView(duration: e.duration),
+                          e.durationInDays.toInt().textify()
+                          // DurationView(duration: e.duration),
                         ],
                       );
                     },
@@ -60,7 +61,8 @@ class ComplaintsView extends StatelessWidget {
             );
           },
           child: "EDIT COMPLAINTS".textify(),
-        )
+        ),
+        const TextField().pad(),
       ],
     );
   }

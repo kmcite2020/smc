@@ -1,5 +1,4 @@
 import 'package:smc/er/domain/classification.dart';
-import 'package:smc/er/domain/complaint.dart';
 import 'package:smc/er/domain/gender.dart';
 import 'package:smc/er/domain/patients.dart';
 import 'package:smc/er/domain/triage.dart';
@@ -179,34 +178,6 @@ class PatientsBloc {
             updatedPatientCopy.mr: updatedPatientCopy,
           },
         );
-        return updatedPatientsCopy;
-      },
-    );
-  }
-
-  /// CURRENT COMPLAINTS
-  void updateComplaints(List<Complaint> complaints, MR patientID) {
-    patientsRM.setState(
-      (s) {
-        final patientsCopy = s.copyWith();
-        final patientCopy = patientsCopy.patients[patientID]!;
-        final complaintsCopy = List<Complaint>.from(
-          patientCopy.presentingComplaints,
-        );
-
-        complaintsCopy.addAll(complaints);
-
-        final updatedPatientCopy = patientCopy.copyWith(
-          presentingComplaints: complaintsCopy,
-        );
-
-        final updatedPatientsCopy = patientsCopy.copyWith(
-          patients: {
-            ...s.patients,
-            updatedPatientCopy.mr: updatedPatientCopy,
-          },
-        );
-
         return updatedPatientsCopy;
       },
     );

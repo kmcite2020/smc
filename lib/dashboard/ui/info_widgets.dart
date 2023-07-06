@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:smc/core/extensions.dart';
-import 'package:smc/er/presentation/patients/patients_page.dart';
+import 'package:smc/er/presentation/patients/emergency_patients_page.dart';
 import 'package:smc/opd/opd_page.dart';
+import 'package:smc/patients/discharged/discharged_patients_page.dart';
 import 'package:states_rebuilder/states_rebuilder.dart';
 
 import '../../core/router.dart';
@@ -67,10 +68,18 @@ class InfoWidgets extends ReactiveStatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   router.toPageless(
-                    const PatientsPage(),
+                    const DischargedPatientsPage(),
                   );
                 },
-                child: 'ER Utilities'.textify(),
+                child: 'DISCHARGED'.textify(),
+              ).pad(),
+              ElevatedButton(
+                onPressed: () {
+                  router.toPageless(
+                    const EmergencyPatientsPage(),
+                  );
+                },
+                child: 'EMERGENCY'.textify(),
               ).pad(),
             ],
           ),
